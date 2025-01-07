@@ -19,10 +19,10 @@ body {
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    width: 50px;
+    width: 60px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    border-radius: 0 12px 12px 0;
     transition: all 0.3s ease;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -30,62 +30,160 @@ body {
 }
 
 .sidebar:hover {
-    width: 140px;
+    width: 150px;
 }
 
 .nav-list {
     list-style: none;
     padding: 8px;
-    width: 100%;
+    margin: 0;
 }
 
 .nav-item {
-    width: 100%;
     margin: 4px 0;
 }
 
 .nav-link {
-    position: relative;
     display: flex;
     align-items: center;
-    height: 40px;
-    width: calc(100% - 4px);
     color: rgba(255, 255, 255, 0.85);
     text-decoration: none;
-    transition: all 0.3s ease;
+    padding: 8px;
     border-radius: var(--border-radius);
-    margin: 0 2px;
+    transition: all 0.3s ease;
 }
 
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* 图标基础样式 */
 .nav-icon {
-    width: 34px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
+    width: 24px;
+    height: 24px;
+    margin-right: 24px;
+    position: relative;
     flex-shrink: 0;
+}
+
+.nav-icon::before,
+.nav-icon::after {
+    content: '';
+    position: absolute;
+    background: white;
+}
+
+/* 发现图标 */
+.icon-discover::before {
+    width: 12px;
+    height: 12px;
+    border: 2px solid white;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* 数据图标 */
+.icon-data::before {
+    width: 4px;
+    height: 16px;
+    bottom: 2px;
+    left: 6px;
+}
+
+.icon-data::after {
+    width: 4px;
+    height: 10px;
+    bottom: 2px;
+    left: 14px;
+}
+
+/* 通知图标 */
+.icon-notify::before {
+    width: 14px;
+    height: 14px;
+    border: 2px solid white;
+    border-radius: 50% 50% 0 0;
+    left: 50%;
+    top: 4px;
+    transform: translateX(-50%);
+}
+
+/* 收藏图标 */
+.icon-bookmark::before {
+    width: 10px;
+    height: 14px;
+    border: 2px solid white;
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+    left: 50%;
+    top: 4px;
+    transform: translateX(-50%);
+}
+
+/* 设置图标 */
+.icon-settings::before {
+    width: 14px;
+    height: 14px;
+    border: 2px solid white;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.icon-settings::after {
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .nav-text {
     font-size: 14px;
-    opacity: 0;
-    transition: all 0.3s ease;
     white-space: nowrap;
-    margin-left: -20px;
-}
-
-.nav-link:hover {
-    color: rgba(255, 255, 255, 1);
-    background: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transform: translateX(-15px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    margin-left: 8px;
 }
 
 .sidebar:hover .nav-text {
     opacity: 1;
-    margin-left: 20px;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 50px;
+    }
+    
+    .sidebar:hover {
+        width: 50px;
+    }
+    
+    .nav-text {
+        display: none;
+    }
+    
+    .nav-link {
+        justify-content: center;
+    }
+    
+    .nav-icon {
+        margin-right: 0;
+    }
 }
 
 .main-content {
-    margin-left: 70px;
+    margin-left: 80px;
     padding: 20px;
     color: white;
 }
