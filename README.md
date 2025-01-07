@@ -2,7 +2,7 @@
 
 一个使用纯CSS实现的毛玻璃风格侧边导航栏，无需任何外部依赖。
 
-🔗 [在线预览](https://abcdream-lary.github.io/nav/)
+🔗 <a href="https://abcdream-lary.github.io/nav/" target="_blank">在线预览</a>
 
 ## 特点
 
