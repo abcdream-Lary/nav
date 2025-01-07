@@ -1,63 +1,66 @@
-:root {
-    --border-radius: 12px;
-}
+/**
+ * 重置默认样式
+ * ----------------------------------------*/
+* {margin: 0; box-sizing: border-box}
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/**
+ * 基础布局
+ * 设置页面高度和渐变背景
+ * ----------------------------------------*/
 body {
     min-height: 100vh;
     background: linear-gradient(45deg, #1a1a1a, #2c3e50);
-    font-family: Arial, sans-serif;
+    font: 14px Arial;
 }
 
+/**
+ * 侧边导航栏
+ * 固定定位，垂直居中，毛玻璃效果
+ * ----------------------------------------*/
 .sidebar {
     position: fixed;
-    left: 0;
     top: 50%;
-    transform: translateY(-50%);
     width: 60px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, .1);
     backdrop-filter: blur(10px);
     border-radius: 0 12px 12px 0;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
+    transform: translateY(-50%);
     overflow: hidden;
+    transition: .3s;
 }
 
-.sidebar:hover {
-    width: 150px;
-}
+/* 侧边栏悬停时展开宽度 */
+.sidebar:hover {width: 150px}
 
+/* 导航列表容器 */
 .nav-list {
     list-style: none;
     padding: 8px;
-    margin: 0;
 }
 
-.nav-item {
-    margin: 4px 0;
-}
-
+/**
+ * 导航链接样式
+ * 弹性布局，居中对齐，带过渡动画
+ * ----------------------------------------*/
 .nav-link {
     display: flex;
     align-items: center;
-    color: rgba(255, 255, 255, 0.85);
-    text-decoration: none;
     padding: 8px;
-    border-radius: var(--border-radius);
-    transition: all 0.3s ease;
+    margin: 4px 0;
+    color: rgba(255, 255, 255, .85);
+    text-decoration: none;
+    border-radius: 12px;
+    transition: .3s;
 }
 
-.nav-link:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
+/* 链接悬停效果 */
+.nav-link:hover {background: rgba(255, 255, 255, .1)}
 
-/* 图标基础样式 */
+/**
+ * 图标基础样式
+ * 固定尺寸，相对定位用于伪元素
+ * ----------------------------------------*/
 .nav-icon {
     width: 24px;
     height: 24px;
@@ -66,25 +69,30 @@ body {
     flex-shrink: 0;
 }
 
+/* 图标伪元素通用样式 */
 .nav-icon::before,
 .nav-icon::after {
     content: '';
     position: absolute;
-    background: white;
+    background: #fff;
 }
 
-/* 发现图标 */
+/**
+ * 自定义图标样式
+ * 使用伪元素和边框创建图标
+ * ----------------------------------------*/
+/* 发现 - 圆形指南针 */
 .icon-discover::before {
     width: 12px;
     height: 12px;
-    border: 2px solid white;
+    border: 2px solid #fff;
     border-radius: 50%;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
 }
 
-/* 数据图标 */
+/* 数据 - 双柱状图 */
 .icon-data::before {
     width: 4px;
     height: 16px;
@@ -99,34 +107,34 @@ body {
     left: 14px;
 }
 
-/* 通知图标 */
+/* 通知 - 铃铛形状 */
 .icon-notify::before {
     width: 14px;
     height: 14px;
-    border: 2px solid white;
+    border: 2px solid #fff;
     border-radius: 50% 50% 0 0;
     left: 50%;
     top: 4px;
     transform: translateX(-50%);
 }
 
-/* 收藏图标 */
+/* 收藏 - 书签形状 */
 .icon-bookmark::before {
     width: 10px;
     height: 14px;
-    border: 2px solid white;
-    border-bottom: none;
+    border: 2px solid #fff;
+    border-bottom: 0;
     border-radius: 4px 4px 0 0;
     left: 50%;
     top: 4px;
     transform: translateX(-50%);
 }
 
-/* 设置图标 */
+/* 设置 - 齿轮形状 */
 .icon-settings::before {
     width: 14px;
     height: 14px;
-    border: 2px solid white;
+    border: 2px solid #fff;
     border-radius: 50%;
     left: 50%;
     top: 50%;
@@ -136,63 +144,58 @@ body {
 .icon-settings::after {
     width: 4px;
     height: 4px;
-    background: white;
+    background: #fff;
     border-radius: 50%;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
 }
 
+/**
+ * 导航文字样式
+ * 默认隐藏，带位移动画
+ * ----------------------------------------*/
 .nav-text {
-    font-size: 14px;
-    white-space: nowrap;
     opacity: 0;
     transform: translateX(-15px);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: .3s;
+    white-space: nowrap;
     pointer-events: none;
     margin-left: 8px;
 }
 
+/* 侧边栏展开时显示文字 */
 .sidebar:hover .nav-text {
     opacity: 1;
-    transform: translateX(0);
+    transform: none;
     pointer-events: auto;
 }
 
-/* 响应式设计 */
+/**
+ * 响应式布局
+ * 移动端适配，小于768px时简化显示
+ * ----------------------------------------*/
 @media (max-width: 768px) {
-    .sidebar {
-        width: 50px;
-    }
-    
-    .sidebar:hover {
-        width: 50px;
-    }
-    
-    .nav-text {
-        display: none;
-    }
-    
-    .nav-link {
-        justify-content: center;
-    }
-    
-    .nav-icon {
-        margin-right: 0;
-    }
+    .sidebar, .sidebar:hover {width: 50px}
+    .nav-text {display: none}
+    .nav-link {justify-content: center}
+    .nav-icon {margin: 0}
 }
 
+/**
+ * 主内容区域
+ * 左侧留出导航栏空间
+ * ----------------------------------------*/
 .main-content {
     margin-left: 80px;
     padding: 20px;
-    color: white;
+    color: #fff;
 }
 
+/* 主标题和段落样式 */
 .main-content h1 {
-    margin-bottom: 20px;
+    margin: 0 0 20px;
     font-weight: 500;
 }
 
-.main-content p {
-    color: rgba(255, 255, 255, 0.7);
-} 
+.main-content p {color: rgba(255, 255, 255, .7)} 
